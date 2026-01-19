@@ -1,0 +1,132 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Add New Employee</h1>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <mat-card class="form-card">
+      <mat-card-header class="form-header">
+        <mat-card-title class="section-title">Employee Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+          <div class="form-section">
+            <h3 class="form-section-title">Personal Details</h3>
+            <div class="form-row">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" required>
+                @if (employeeForm.get('username')?.hasError('required') && employeeForm.get('username')?.touched) {
+                  <mat-error>{{ getErrorMessage('username') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" required>
+                @if (employeeForm.get('firstName')?.hasError('required') && employeeForm.get('firstName')?.touched) {
+                  <mat-error>{{ getErrorMessage('firstName') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" required>
+                @if (employeeForm.get('lastName')?.hasError('required') && employeeForm.get('lastName')?.touched) {
+                  <mat-error>{{ getErrorMessage('lastName') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="form-section-title">Contact Information</h3>
+            <div class="form-row">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="email" type="email" required>
+                @if (employeeForm.get('email')?.hasError('required') && employeeForm.get('email')?.touched) {
+                  <mat-error>{{ getErrorMessage('email') }}</mat-error>
+                }
+                @if (employeeForm.get('email')?.hasError('email') && employeeForm.get('email')?.touched) {
+                  <mat-error>{{ getErrorMessage('email') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Birth Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthDate" [max]="maxDate" required>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                @if (employeeForm.get('birthDate')?.hasError('required') && employeeForm.get('birthDate')?.touched) {
+                  <mat-error>{{ getErrorMessage('birthDate') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="form-section-title">Employment Details</h3>
+            <div class="form-row">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Basic Salary</mat-label>
+                <input matInput formControlName="basicSalary" type="number" required>
+                @if (employeeForm.get('basicSalary')?.hasError('required') && employeeForm.get('basicSalary')?.touched) {
+                  <mat-error>{{ getErrorMessage('basicSalary') }}</mat-error>
+                }
+                @if (employeeForm.get('basicSalary')?.hasError('pattern') && employeeForm.get('basicSalary')?.touched) {
+                  <mat-error>{{ getErrorMessage('basicSalary') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Employment Status</mat-label>
+                <mat-select formControlName="status" required>
+                  <mat-option value="Active">Active</mat-option>
+                  <mat-option value="Inactive">Inactive</mat-option>
+                  <mat-option value="On Leave">On Leave</mat-option>
+                  <mat-option value="Terminated">Terminated</mat-option>
+                </mat-select>
+                @if (employeeForm.get('status')?.hasError('required') && employeeForm.get('status')?.touched) {
+                  <mat-error>{{ getErrorMessage('status') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Department / Group</mat-label>
+                <input matInput formControlName="group" [matAutocomplete]="auto" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                  @for (group of groups; track group) {
+                    <mat-option [value]="group">{{ group }}</mat-option>
+                  }
+                </mat-autocomplete>
+                @if (employeeForm.get('group')?.hasError('required') && employeeForm.get('group')?.touched) {
+                  <mat-error>{{ getErrorMessage('group') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="form-section-title">Additional Information</h3>
+            <mat-form-field class="form-field full-width" appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description" rows="4" required></textarea>
+              @if (employeeForm.get('description')?.hasError('required') && employeeForm.get('description')?.touched) {
+                <mat-error>{{ getErrorMessage('description') }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="form-actions">
+        <button mat-button (click)="onCancel()" class="cancel-button">Cancel</button>
+        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="employeeForm.invalid" class="submit-button">
+          Save Employee
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

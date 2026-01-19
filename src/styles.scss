@@ -1,0 +1,204 @@
+/* Enterprise Banking Backoffice Global Styles */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/* Local fonts - will be used when files are available */
+/* @import './assets/fonts/material-icons.css'; */
+/* @import './assets/fonts/roboto.css'; */
+
+// Modern Enterprise Banking Color Palette
+$navy-blue: #1a237e;
+$navy-blue-dark: #0d47a1;
+$navy-blue-light: #3949ab;
+$navy-blue-soft: #e8eaf6;
+$grey-light: #fafbfc;
+$grey-very-light: #f5f7fa;
+$grey-medium: #e8ebed;
+$grey-border: #d1d5db;
+$grey-text: #6b7280;
+$grey-text-dark: #374151;
+$white: #ffffff;
+$border-color: #e5e7eb;
+$text-primary: #111827;
+$text-secondary: #6b7280;
+$text-tertiary: #9ca3af;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background-color: $grey-very-light;
+  color: $text-primary;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+// Override Material theme colors for modern enterprise look
+::ng-deep {
+  .mat-mdc-raised-button.mat-primary {
+    background-color: $navy-blue !important;
+    color: $white !important;
+    box-shadow: 0 1px 2px rgba(26, 35, 126, 0.2) !important;
+    transition: all 0.2s ease !important;
+    
+    &:hover {
+      background-color: $navy-blue-dark !important;
+      box-shadow: 0 2px 4px rgba(26, 35, 126, 0.25) !important;
+    }
+  }
+
+  .mat-mdc-button.mat-primary {
+    color: $navy-blue !important;
+    font-weight: 500 !important;
+  }
+
+  .mat-mdc-icon-button.mat-primary {
+    color: $navy-blue !important;
+  }
+
+  .mat-mdc-icon-button.mat-warn {
+    color: #dc2626 !important;
+  }
+
+  // Modern Card styling - minimal shadow, subtle border
+  .mat-mdc-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid $border-color !important;
+    border-radius: 8px !important;
+    background-color: $white !important;
+  }
+
+  // Modern Form field styling
+  .mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper {
+      background-color: $white;
+    }
+
+    .mat-mdc-form-field-label {
+      color: $text-secondary !important;
+      font-weight: 400 !important;
+    }
+
+    .mat-mdc-input-element {
+      color: $text-primary !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+    }
+
+    &.mat-focused {
+      .mat-mdc-form-field-label {
+        color: $navy-blue !important;
+      }
+    }
+  }
+
+  // Modern Table styling
+  .mat-mdc-table {
+    background-color: $white;
+    border-radius: 0;
+    
+    .mat-mdc-header-row {
+      background-color: $grey-very-light;
+      border-bottom: 1px solid $border-color;
+      
+      .mat-mdc-header-cell {
+        color: $text-secondary;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 16px;
+      }
+    }
+
+    .mat-mdc-row {
+      border-bottom: 1px solid $grey-medium;
+      transition: background-color 0.15s ease;
+      
+      &:hover {
+        background-color: $grey-very-light;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .mat-mdc-cell {
+      color: $text-primary;
+      font-size: 14px;
+      padding: 16px;
+      line-height: 1.5;
+    }
+  }
+
+  // Modern Paginator styling
+  .mat-mdc-paginator {
+    background-color: $white;
+    border-top: 1px solid $border-color;
+    color: $text-secondary;
+  }
+
+  // Modern Select styling
+  .mat-mdc-select-panel {
+    background-color: $white;
+    border: 1px solid $border-color;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+  }
+
+  // Modern Datepicker styling
+  .mat-datepicker-content {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+    border: 1px solid $border-color !important;
+  }
+}
+
+// Material Icons font fallback
+.mat-icon {
+  font-family: 'Material Icons', 'Material Icons Outlined', 'Material Icons Round', 'Material Icons Sharp', 'Material Icons Two Tone' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+// Custom snackbar styles
+::ng-deep .yellow-snackbar {
+  background-color: #f57c00 !important;
+  color: $white !important;
+}
+
+::ng-deep .red-snackbar {
+  background-color: #c62828 !important;
+  color: $white !important;
+}

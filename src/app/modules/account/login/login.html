@@ -1,0 +1,36 @@
+<div class="login-container">
+  <div class="login-wrapper">
+    <div class="login-header">
+      <h1 class="system-title">Employee Management System</h1>
+      <p class="system-subtitle">Internal Backoffice Portal</p>
+    </div>
+    <mat-card class="login-card">
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" type="text" required>
+            @if (loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched) {
+              <mat-error>Username is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" required>
+            @if (loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched) {
+              <mat-error>Password is required</mat-error>
+            }
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" class="login-button" [disabled]="loginForm.invalid">
+            Sign In
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+    <div class="login-footer">
+      <p class="footer-text">© 2025 Internal Banking System. Authorized Access Only.</p>
+    </div>
+  </div>
+</div>

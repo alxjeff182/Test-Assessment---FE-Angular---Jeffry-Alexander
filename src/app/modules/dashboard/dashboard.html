@@ -1,0 +1,123 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Dashboard</h1>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+      @for (stat of stats; track stat.title) {
+        <mat-card class="stat-card">
+          <mat-card-content>
+            <div class="stat-content">
+              <div class="stat-icon" [class]="'stat-icon-' + stat.color">
+                <mat-icon>{{ stat.icon }}</mat-icon>
+              </div>
+              <div class="stat-info">
+                <div class="stat-title">{{ stat.title }}</div>
+                <div class="stat-value">{{ stat.value }}</div>
+                @if (stat.change) {
+                  <div class="stat-change" [class]="stat.change.startsWith('+') ? 'positive' : 'negative'">
+                    {{ stat.change }}
+                  </div>
+                }
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+
+    <!-- Quick Actions and Recent Activities -->
+    <div class="dashboard-grid">
+      <!-- Quick Actions -->
+      <mat-card class="action-card">
+        <mat-card-header>
+          <mat-card-title class="section-title">Quick Actions</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="action-buttons">
+            <button mat-raised-button color="primary" (click)="navigateToEmployees()" class="action-button">
+              <mat-icon>person_add</mat-icon>
+              <span>Add Employee</span>
+            </button>
+            <button mat-raised-button color="primary" (click)="navigateToEmployees()" class="action-button">
+              <mat-icon>list</mat-icon>
+              <span>View All Employees</span>
+            </button>
+            <button mat-stroked-button class="action-button">
+              <mat-icon>download</mat-icon>
+              <span>Export Data</span>
+            </button>
+            <button mat-stroked-button class="action-button">
+              <mat-icon>settings</mat-icon>
+              <span>Settings</span>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Recent Activities -->
+      <mat-card class="activity-card">
+        <mat-card-header>
+          <mat-card-title class="section-title">Recent Activities</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="activity-list">
+            @for (activity of recentActivities; track activity.id) {
+              <div class="activity-item">
+                <div class="activity-icon" [class]="'activity-' + activity.type">
+                  <mat-icon>
+                    @if (activity.type === 'add') {
+                      add_circle
+                    } @else if (activity.type === 'edit') {
+                      edit
+                    } @else {
+                      delete
+                    }
+                  </mat-icon>
+                </div>
+                <div class="activity-content">
+                  <div class="activity-action">{{ activity.action }}</div>
+                  <div class="activity-details">
+                    <span class="activity-employee">{{ activity.employee }}</span>
+                    <span class="activity-time">{{ activity.time }}</span>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Employee Status Overview -->
+    <mat-card class="overview-card">
+      <mat-card-header>
+        <mat-card-title class="section-title">Employee Status Overview</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="status-overview">
+          <div class="status-item">
+            <div class="status-label">Total Employees</div>
+            <div class="status-value">{{ totalEmployees }}</div>
+          </div>
+          <div class="status-item">
+            <div class="status-label">Active</div>
+            <div class="status-value status-active">{{ activeEmployees }}</div>
+          </div>
+          <div class="status-item">
+            <div class="status-label">Inactive</div>
+            <div class="status-value status-inactive">{{ inactiveEmployees }}</div>
+          </div>
+          <div class="status-item">
+            <div class="status-label">On Leave</div>
+            <div class="status-value status-on-leave">{{ onLeaveEmployees }}</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

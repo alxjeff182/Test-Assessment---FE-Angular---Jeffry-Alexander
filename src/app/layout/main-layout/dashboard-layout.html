@@ -1,0 +1,54 @@
+<mat-sidenav-container class="dashboard-container">
+  <mat-sidenav 
+    mode="side" 
+    [opened]="sidenavOpened" 
+    class="dashboard-sidenav"
+    fixedInViewport="true">
+    <div class="sidenav-header">
+      <div class="logo-section">
+        <mat-icon class="logo-icon">account_balance</mat-icon>
+        <div class="logo-text">
+          <div class="logo-title">Banking</div>
+          <div class="logo-subtitle">Backoffice</div>
+        </div>
+      </div>
+    </div>
+    <mat-nav-list class="sidenav-menu">
+      <a 
+        mat-list-item 
+        routerLink="/dashboard"
+        [class.active]="isDashboardActive"
+        [class.menu-item]="true">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a 
+        mat-list-item 
+        routerLink="/employees"
+        [class.active]="isEmployeesActive"
+        [class.menu-item]="true">
+        <mat-icon>list</mat-icon>
+        <span>Employee List</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="dashboard-content">
+    <mat-toolbar class="dashboard-toolbar">
+      <button mat-icon-button (click)="toggleSidenav()" class="menu-toggle">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-spacer"></span>
+      <div class="toolbar-user">
+        <mat-icon class="user-icon">account_circle</mat-icon>
+        <span class="user-name">Administrator</span>
+      </div>
+      <button mat-icon-button (click)="logout()" class="logout-button" title="Logout">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="content-wrapper">
+      <router-outlet />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
